@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Echo - Innovative Communication Technology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --background-color: #f4f6f9;
+            --text-color: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo-image {
+            max-height: 50px;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 15px 50px;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 50px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 15px;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+            padding-top: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Try It Button Styles */
+        .try-it-button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 250px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .try-it-button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .try-it-button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .try-it-button:hover span {
+            padding-right: 25px;
+        }
+
+        .try-it-button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .try-it-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Video Guide Section */
+        .video-guide {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-guide iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-container,
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+            }
+
+            .nav-links li {
+                margin: 0 10px;
+            }
+
+            .hero-image {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#logo" class="logo">Silent Echo</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#guide">Guide</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#signlanguage" >Sign Language</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Silent Echo: Revolutionizing Communication</h1>
+                <p>Breaking barriers with innovative glouse technology that transforms how we communicate.</p>
+                
+                <!-- Try It Button -->
+                <div class="try-it-container" style="margin-top: 30px;">
+                    <button class="try-it-button" onclick="navigateToTryIt()">
+                        <span>Try It</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="one.jpg.jpg" alt="Silent Echo Technology">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About Silent Echo</h2>
+            <p>Sign for Deaf is a project designed to help individuals with hearing impairments communicate more easily. The goal is to create a sensor glove that can translate sign language into spoken or written text. This technology enables deaf and hard-of-hearing individuals to communicate effortlessly with the hearing world. The project combines hardware (a glove with sensors) and software (real-time translation on a web platform) to create a simple and effective solution. Our main objective is to make communication easier and more accessible for people with hearing disabilities. As an undergraduate team, we've worked together to integrate AI and machine learning to improve the accuracy and efficiency of the translation system. Through this project, we aim to enhance the daily lives of individuals with hearing impairments and raise awareness about the importance of digital accessibility for everyone.</p>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <h2>Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h3>Gesture Recognition</h3>
+                    <p> Gesture translation to text</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Multi-Platform</h3>
+                    <p>Works across smartphones, tablets, and computers</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Real-Time</h3>
+                    <p>Instant communication translation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Guide Section -->
+        <section id="guide" class="section">
+            <h2>How It Works</h2>
+            <div class="video-guide">
+                <div class="video-container">
+                    <video controls>
+                        <source src="C:/Users/HP/Desktop/signlanguageproject/image/image/Robotica - AI British Sign Language avatar.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+        
+        <style>
+            .video-container {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                height: 0;
+                overflow: hidden;
+                max-width: 100%;
+                background: #000;
+            }
+        
+            .video-container video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+         <!--Sign Language Section-->
+         <section id="signlanguage" class="section">
+            <h2>What is Sign Language ?</h2>
+            <p>Sign language is a visual language consisting of hand and face movements, gestures and facial expressions used by hearing impaired and deaf individuals to communicate. First language acquisition of hearing impaired and deaf individuals, that is, since the first language they learn is sign language; sign language is the main languages of deaf individuals.
+                <br>Just as the spoken language of each country is different, the sign language used also differs in each country, and according to research, there are more than 300 sign languages spoken around the world.</br>
+            <br>Close to 50% of hearing impaired individuals whose first language acquisition is sign language, and even more than this number according to many studies, have difficulty understanding what they are reading.</br>
+        <br>The fact that the educational system of hearing impaired individuals is different; the fact that sign language and spoken language are grammatically different from each other; the fact that sign language dictionaries are not very rich causes them to have difficulty understanding what they are reading.</br>    
+    <br>For this reason, hearing impaired individuals experience problems when they access websites. Unfortunately, the idea of adding subtitles to videos or communicating by correspondence is not a healthy and correct way of communication because deaf individuals cannot fully understand what they are reading. For these reasons, we are developing an artificial intelligence-supported sign language translation system for hearing impaired and deaf individuals to have free access to digital content, information and services.</br>    
+    </p>
+        </section>
+        
+        <!-- Contact Us Section -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="Last Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+       
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handler
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            form.reset();
+        });
+
+        // Try It Button Navigation
+        function navigateToTryIt() {
+            // Create a mock try-it page URL
+            const tryItUrl = 'glouse-output.html';
+            
+            // Open in a new tab
+            window.open(tryItUrl, '_blank');
+        }
+
+        // Create glouse-output.html if it doesn't exist
+        function createGlouseOutputPage() {
+            const outputPageContent = `
+
+            `;
+            
+            // Create a Blob with the page content
+            const blob = new Blob([outputPageContent], {type: 'text/html'});
+            
+            // Create a link element and trigger download
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'glouse-output.html';
+            link.click();
+        }
+
+        // Optional: Uncomment to automatically create the output page when the script loads
+        // createGlouseOutputPage();
+    </script>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>Our mission is to bridge the communication gap for the deaf and hard-of-hearing community through innovative technology solutions.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#guide">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Subscribe</h3>
+                <p>Stay updated with our latest innovations and updates.</p>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sign Language Project. All rights reserved. | Designed with Team GurlSquad</p>
+        </div>
+    </footer>
+    
+    <style>
+        .footer {
+            background: var(--primary-color);
+            color: #ddd;
+            padding: 50px 20px;
+            font-family: 'Arial', sans-serif;
+        }
+    
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .footer-container > div {
+            flex: 1 1 calc(25% - 20px);
+            min-width: 200px;
+        }
+    
+        .footer h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+    
+        .footer p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+    
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+    
+        .footer-links ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    
+        .footer-links ul li a:hover {
+            color: #1dbf73; /* Highlight color on hover */
+        }
+    
+        .social-icons a {
+            color: #ddd;
+            font-size: 20px;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+    
+        .social-icons a:hover {
+            color: #1dbf73;
+        }
+    
+        .footer-newsletter form {
+            display: flex;
+            gap: 10px;
+        }
+    
+        .footer-newsletter input[type="email"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    
+        .footer-newsletter button {
+            padding: 10px 20px;
+            font-size: 14px;
+            background: #1dbf73;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+    
+        .footer-newsletter button:hover {
+            background: #17a363;
+        }
+    
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+    </style>
+    
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+</body>
+</html>
